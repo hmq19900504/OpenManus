@@ -415,6 +415,32 @@ async def run_mcp():
         await runner.cleanup()
 ```
 
+### cli_run.py (命令行参数入口)
+
+这是一个统一的命令行工具，允许用户直接通过命令行参数传递提示词，支持所有三种运行模式 (agent, flow, mcp)：
+
+```bash
+# 基本用法
+python cli_run.py "你的提示词"
+
+# 指定运行模式
+python cli_run.py --mode agent "使用 Manus Agent 处理这个请求"
+python cli_run.py --mode flow "使用 PlanningFlow 处理这个请求"
+python cli_run.py --mode mcp "使用 MCP Agent 处理这个请求"
+
+# 缩写形式
+python cli_run.py -m flow "简短的模式指定"
+
+# MCP 模式的特殊选项
+python cli_run.py -m mcp --connection sse --server-url "http://example.com/sse" "使用 SSE 连接到远程 MCP 服务器"
+```
+
+完整帮助信息可通过以下命令查看：
+
+```bash
+python cli_run.py --help
+```
+
 ## 配置方式
 
 OpenManus 使用 TOML 配置文件（`config/config.toml`）进行配置。主要配置项包括：
