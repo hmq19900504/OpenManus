@@ -8,6 +8,7 @@ from app.flow.planning import PlanningFlow
 
 class FlowType(str, Enum):
     PLANNING = "planning"
+    MULTI_MCP = "multi_mcp"
 
 
 class FlowFactory:
@@ -21,6 +22,9 @@ class FlowFactory:
     ) -> BaseFlow:
         flows = {
             FlowType.PLANNING: PlanningFlow,
+            FlowType.MULTI_MCP: lambda agents, **k: __import__(
+                "app.flow.multi_mcp_flow", fromlist=["MultiMCPFlow"]
+            ).MultiMCPFlow(agents, **k),
         }
 
         flow_class = flows.get(flow_type)

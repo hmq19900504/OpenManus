@@ -1,0 +1,42 @@
+# OpenManus 多MCP服务配置示例
+# 复制此文件到 config/config.toml 并根据需要修改
+
+# 全局LLM配置
+[llm]
+model = "gpt-4o"
+base_url = "https://api.openai.com/v1"
+api_key = "sk-..."                     # 替换为您的API密钥
+max_tokens = 4096
+temperature = 0.0
+
+# 标准MCP配置
+[mcp]
+# MCP服务定义
+[mcp.services]
+
+# Sequential Thinking 服务
+[mcp.services.sequential_thinking]
+connection_type = "stdio"
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+# Filesystem 服务
+[mcp.services.filesystem]
+connection_type = "stdio"
+command = "npx"
+args = [
+    "-y",
+    "@modelcontextprotocol/server-filesystem",
+    "/Users/miracle.hong/baidusync/code/llm-analyz/dw/in",
+    "/Users/miracle.hong/baidusync/code/llm-analyz/dw/out",
+]
+
+# 可以添加更多MCP服务
+# [mcp.services.another_service]
+# connection_type = "sse"
+# server_url = "http://localhost:3000/sse"
+
+# [mcp.services.custom_service]
+# connection_type = "stdio"
+# command = "python"
+# args = ["-m", "custom_mcp_server"]

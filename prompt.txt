@@ -1,0 +1,7 @@
+根据小米汽车自燃事件，评估一下小米股价变动趋势，需要结合当前热点，历史类似事件做对照！
+# 直接指定使用sequential_thinking服务
+@sequential_thinking 详细分析这个问题的各个方面
+# 直接指定使用filesystem服务
+@filesystem 在/output目录创建一个包含分析结果的markdown文件
+# 使用自动路由
+全程使用中文，帮我分析这份数据并生成报告，注意格式写入文档中
